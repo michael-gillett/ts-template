@@ -1,0 +1,16 @@
+{
+  "[javascript,typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "out/**": true
+  },
+  "files.exclude": {
+    "out/**": true
+  },
+  "terminal.integrated.shell.osx": ""
+}
