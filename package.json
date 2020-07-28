@@ -5,7 +5,10 @@
     "build": "yarn run tsc",
     "watch": "yarn run tsc --watch",
     "lint": "yarn run eslint 'src/**/*.ts'",
-    "lint:fix": "yarn run eslint 'src/**/*.ts' --fix"
+    "lint:fix": "yarn run eslint 'src/**/*.ts' --fix",
+    "docker:build": "DOCKER_BUILDKIT=1 docker build . -t ts-template:test",
+    "docker:start": "docker run -it --rm -p 8080:8080 --name ts-template ts-template:test",
+    "docker:stop": "docker kill ts-template"
   },
   "devDependencies": {
     "@types/express": "4.17.6",
