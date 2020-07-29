@@ -1,0 +1,26 @@
+pre-push:
+  commands:
+    packages-audit:
+      tags: security
+      run: yarn audit
+pre-commit:
+  parallel: true
+  commands:
+    prettier-fix:
+      glob: '*.ts'
+      run: yarn prettier --write {staged_files}
+    eslint-fix:
+      glob: '*.ts'
+      run: yarn eslint {staged_files} --fix
+    ts-compile:
+      glob: '*.ts'
+      run: yarn run tsc --noEmit --incremental false
+post-checkout:
+  parallel: true
+  commands:
+    # Install new packages when checking out a branch that has a diff in package.json
+    #  or yarn.lock from the previous branch
+    yarn-install:
+      files: git diff --name-only HEAD@{1} HEAD
+      glob: '{package.json,yarn.lock}'
+      run: yarn install
